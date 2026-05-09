@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playful Hangman</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="bg-blob blob-one"></div>
+      <div class="bg-blob blob-two"></div>
+      <div class="bg-doodle doodle-star"></div>
+      <div class="bg-doodle doodle-loop"></div>
+
+      <main class="app-card">
+        <section class="setup-panel">
+          <div class="setup-copy">
+            <p class="eyebrow">Runner Setup</p>
+            <h1>Make your own hangman round</h1>
+            <p class="setup-text">
+              Type the secret word, add up to three hints, then start the round
+              and hand the screen to the player.
+            </p>
+          </div>
+
+          <form id="setup-form" class="setup-form" autocomplete="off">
+            <label class="field">
+              <span>Secret word or phrase</span>
+              <input
+                id="secret-word"
+                name="secretWord"
+                type="password"
+                placeholder="Type the answer here"
+                required
+              />
+            </label>
+
+            <div class="hint-fields">
+              <label class="field">
+                <span>Hint 1</span>
+                <input id="hint-1" name="hint1" type="text" placeholder="First clue" />
+              </label>
+              <label class="field">
+                <span>Hint 2</span>
+                <input id="hint-2" name="hint2" type="text" placeholder="Second clue" />
+              </label>
+              <label class="field">
+                <span>Hint 3</span>
+                <input id="hint-3" name="hint3" type="text" placeholder="Third clue" />
+              </label>
+            </div>
+
+            <div class="setup-actions">
+              <button type="submit" class="primary-btn">Start Round</button>
+              <button type="button" id="new-round-btn" class="ghost-btn">
+                Clear
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="game-card">
+          <div class="illustration-panel">
+            <svg
+              class="hangman-figure"
+              viewBox="0 0 320 320"
+              role="img"
+              aria-label="Hangman drawing"
+            >
+              <line x1="32" y1="292" x2="232" y2="292" class="gallows" />
+              <line x1="72" y1="292" x2="72" y2="48" class="gallows" />
+              <line x1="72" y1="48" x2="178" y2="48" class="gallows" />
+              <line x1="178" y1="48" x2="178" y2="84" class="gallows" />
+              <line x1="72" y1="48" x2="106" y2="48" class="gallows" />
+              <line x1="72" y1="48" x2="106" y2="14" class="gallows" />
+
+              <circle id="part-head" cx="178" cy="102" r="22" class="part" />
+              <line id="part-body" x1="178" y1="124" x2="178" y2="196" class="part" />
+              <line id="part-left-arm" x1="178" y1="142" x2="144" y2="176" class="part" />
+              <line id="part-right-arm" x1="178" y1="142" x2="212" y2="176" class="part" />
+              <line id="part-left-leg" x1="178" y1="196" x2="146" y2="230" class="part" />
+              <line id="part-right-leg" x1="178" y1="196" x2="210" y2="230" class="part" />
+            </svg>
+            <p class="game-stamp">HANGMAN GAME</p>
+          </div>
+
+          <div class="play-panel">
+            <div class="status-row">
+              <div>
+                <p class="eyebrow">Guess The Word</p>
+                <h2 id="round-title">Ready for a new round?</h2>
+              </div>
+              <button type="button" id="reset-round-btn" class="ghost-btn">
+                Reset Round
+              </button>
+            </div>
+
+            <div id="word-display" class="word-display" aria-live="polite"></div>
+
+            <div class="hint-area">
+              <div class="hint-pills" id="hint-pills"></div>
+              <p id="hint-output" class="hint-output">
+                Click a hint pill when the player wants a clue.
+              </p>
+            </div>
+
+            <div class="scoreboard">
+              <p>
+                Incorrect guesses:
+                <strong><span id="wrong-count">0</span> / 6</strong>
+              </p>
+              <p id="message" class="message">Set a word to begin playing.</p>
+            </div>
+
+            <div id="keyboard" class="keyboard" aria-label="Letter keyboard"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
